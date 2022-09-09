@@ -12,6 +12,10 @@ const playerPosition = {
     x: undefined,
     y: undefined,
 };
+const giftPosition = {
+    x: undefined,
+    y: undefined,
+};
 
 window.addEventListener('load', setCanvasSize);
 window.addEventListener('resize', setCanvasSize);
@@ -55,6 +59,9 @@ function startGame() {
                     playerPosition.y = posY;
                     console.log({ playerPosition });
                 }
+            } else if (col == 'I') {
+                giftPosition.x = posX;
+                giftPosition.y = posY;
             }
 
             game.fillText(emoji, posX, posY);
@@ -65,6 +72,14 @@ function startGame() {
 }
 
 function movePlayer() {
+    const giftColisionX = playerPosition.x.toFixed(3) == giftPosition.x.toFixed(3);
+    const giftColisionY = playerPosition.y.toFixed(3) == giftPosition.y.toFixed(3);
+    const giftColision = giftColisionX && giftColisionY;
+
+    if (giftColision) {
+        console.log('Subiste de nievel');
+    }
+
     game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y);
 
 }
